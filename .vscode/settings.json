@@ -1,0 +1,12 @@
+{
+  "Lua.format.defaultConfig": {
+    "indent_style": "space",
+    "indent_size": "2"
+  },
+  "Lua.diagnostics.globals": [
+    "Dissector",
+    "DissectorTable",
+    "Proto",
+    "set_plugin_info",
+  ]
+}
