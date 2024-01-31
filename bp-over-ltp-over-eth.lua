@@ -8,10 +8,12 @@ set_plugin_info({
 
 -- プロトコルの定義
 local bp_over_ltp_over_eth_protocol = Proto("BPoLTPoE", "BP over LTP over Ethernet")
+-- 最小 Ethernet フレーム長
+local min_eth_buffer_len = 64
 -- Ethernet フレームのヘッダ長
 local eth_header_buffer_len = 14
--- LTP の最小セグメントサイズ
-local min_ltp_buffer_len = 64 - eth_header_buffer_len
+-- 最小 LTP セグメント長
+local min_ltp_buffer_len = min_eth_buffer_len - eth_header_buffer_len
 
 -- プラグインの有効化
 local function enablePlugin()
