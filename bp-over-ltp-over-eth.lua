@@ -15,15 +15,13 @@ local min_eth_data_buffer_len = min_eth_buffer_len - eth_header_buffer_len
 --- Tvb (Testy Virtual Buffer) のフォーマット
 local function formatTvb(buffer)
     local buffer_len = buffer:len()
-
     if min_eth_data_buffer_len < buffer_len then
         return buffer
     end
-
-    -- Ethernet の最小フレームサイズに満たないデータ長の場合は0埋めしており、Wireshark LTP dissectorが Malformed を返す場合があるため、0埋めされている部分を除去したデータ長のバッファを返す
-    for i = buffer_len, 0, -1 do
+    -- Ethernet の最小フレームサイズに満たないデータ長の場合の0埋め部分を除去したバッファを返す
+    for i = buffer_len - 1, 0, -1 do
         if buffer(i, 1):uint() ~= 0 then
-            return buffer(0, i):tvb()
+            return buffer(0, i + 1):tvb()
         end
     end
     return buffer
