@@ -1,5 +1,9 @@
 # wireshark-plugins
 
+## Requirements
+
+- Wireshark 4.2.2 or later
+
 ## Available Dissectors
 
 - [BPoLTPoE](./bp-over-ltp-over-eth.lua)
